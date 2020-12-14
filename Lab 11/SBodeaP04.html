@@ -1,0 +1,61 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care afiseaza 2 componente de text exclusiv numeric
+    limitat intre valorile 100-400. 
+    La apasarea unui buton, un cerc (componenta <div> cu atributul border-radius setat corespunzător) 
+    se pozitioneaza pe ecran in functie de valorile scrise in componente (stanga, sus).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 11</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        function functie() {
+            nr1 = document.createElement("input");
+            nr2 = document.createElement("input");
+            buton = document.createElement("input");
+            nr1.setAttribute("type", "number");
+            nr2.setAttribute("type", "number");
+            buton.setAttribute("type", "button");
+            buton.setAttribute("value", "Spawneaza cerc!");
+            nr1.setAttribute("min", "100");
+            nr2.setAttribute("min", "100");
+            nr1.setAttribute("max", "400");
+            nr2.setAttribute("max", "400");
+            nr1.style.display = "block";
+            nr2.style.display = "block";
+            buton.style.display = "block";
+
+            cerc = document.createElement("div");
+            cerc.style.position = "absolute";
+            cerc.style.top = "0px";
+            cerc.style.left = "0px";
+            cerc.style.height = "100px";
+            cerc.style.width = "0px";
+            cerc.style.borderRadius = "50px";
+            cerc.style.backgroundColor = "red";
+            cerc.style.visible = "false";
+
+            document.body.appendChild(nr1);
+            document.body.appendChild(nr2);
+            document.body.appendChild(buton);
+            document.body.appendChild(cerc);
+
+            buton.addEventListener("click", function () {
+                cerc.style.width = "100px";
+                cerc.style.top = nr1.value + "px";
+                cerc.style.left = nr2.value + "px";
+            });
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+</body>
+
+</html>
