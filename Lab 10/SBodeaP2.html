@@ -1,0 +1,86 @@
+
+<!--
+        Dezvoltati o pagina web cu facilitati JavaScript care deseneaza, una langa alta,
+        o serie (10) de componente div colorate cu culori prestabilite. Intr-o zona de pe ecran
+        se afiseaza codul culorii deasupra careia se afla mouse-ul. Textul este afisat cu culoarea componentei.
+-->
+
+<!DOCTYPE  html>
+<html  lang="en">
+
+        <head>
+                <title>Lab  10  twbd</title>
+                <meta  charset="utf-8">
+                <meta  name="viewport"  content="width=device-width,  initial-scale=1">
+
+                <script>
+                        function getRandomColor() {
+                                var letters = '0123456789ABCDEF';
+                                var color = '#';
+                                for (var i = 0; i < 6; i++) {
+                                color += letters[Math.floor(Math.random() * 16)];
+                                }
+                                return color;
+                        }
+                        function  functie(){
+                                var div=[];
+                                var displayer=document.createElement("div");
+                                displayer.innerHTML="Pune mouse-ul pe o culoare";
+                                displayer.setAttribute("id","displayer");
+                                displayer.style.margin="20px";
+                                displayer.style.overflow="auto";
+                                document.body.appendChild(displayer);
+                                for(var i=0;i<10;i++){
+                                        div[i]=document.createElement("div");
+                                        div[i].setAttribute("id","d"+i);
+                                        div[i].setAttribute("onmouseover","over()");
+                                        div[i].setAttribute("onmouseout","out()");
+
+                                        div[i].addEventListener("mouseover",function(){
+                                                document.getElementById("displayer").innerHTML="Esti cu mouse-ul pe culoarea: "+ 
+                                                document.elementFromPoint(event.clientX, event.clientY).style.backgroundColor;
+                                        });
+                                        div[i].addEventListener("mouseout",function(){
+                                                document.getElementById("displayer").innerHTML="Pune mouse-ul pe o culoare";
+                                        });
+
+
+                                        div[i].style.position="relative";
+                                        div[i].style.display="inline-block";
+                                        div[i].style.height="100px";
+                                        div[i].style.width="100px";
+                                        div[i].style.margin="10px";
+                                }
+                                div[0].style.backgroundColor="rgb(0,0,0)";
+                                div[1].style.backgroundColor="rgb(255,0,0)";
+                                div[2].style.backgroundColor="rgb(0,255,0)";
+                                div[3].style.backgroundColor="rgb(0,0,255)";
+                                div[4].style.backgroundColor="rgb(255,255,0)";
+                                div[5].style.backgroundColor="rgb(255,0,255)";
+                                div[6].style.backgroundColor="rgb(255,255,255)";
+                                div[7].style.backgroundColor="rgb(120,120,120)";
+                                div[8].style.backgroundColor="rgb(0,120,255)";
+                                div[9].style.backgroundColor="rgb(255,120,0)";
+                                for(var i=0;i<10;i++)
+                                        document.body.appendChild(div[i]); 
+                        }
+                        function  over()  {
+                                document.getElementById("displayer").innerHTML="Esti cu mouse-ul pe culoarea: "+ 
+                                        document.elementFromPoint(event.clientX, event.clientY).style.backgroundColor;
+                        }
+                        function  out()  {
+                                document.getElementById("displayer").innerHTML="Pune mouse-ul pe o culoare";
+                        }
+                </script>
+
+        </head>
+
+        <body  onload="functie()"  >
+                <style>
+                        body{
+                                background-color:  rgb(134, 64, 64);
+                        }
+                </style>
+        </body>
+
+</html>

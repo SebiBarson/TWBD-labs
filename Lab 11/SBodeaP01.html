@@ -1,0 +1,35 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care afiseaza un camp destinat incarcarii de 
+    fisiere si permite doar selectarea fisierelor de tip imagine (jpeg, png, gif, bmp). 
+    Corelati tipul de fisier detectat cu extensia acestuia.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 11 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        function functie() {
+            input = document.createElement("input");
+            input.setAttribute("type", "file");
+            input.setAttribute("accept", ".jpg, .jpeg, .png, .bmp, .gif")
+            document.body.appendChild(input);
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+    <!--input type="file" accept=".jpg, .jpeg, .png, .bmp, .gif">Incarca o imangine</input-->
+</body>
+
+</html>

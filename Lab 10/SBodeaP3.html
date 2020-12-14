@@ -1,0 +1,75 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care defineste o grila dreptunghiulara (componente div
+    alaturate, dispuse matricial; dimensiunea grilei este prestabilita). Elementul din stanga sus este colorat diferit.
+    Definiti 4 taste la apasarea carora elementul colorat “se muta” pe celula imediat urmatoare din stanga,
+    dreapta, sus sau jos (doar daca miscarea este posibila).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <title>Lab 10 twbd</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+        <script>
+                function functie() {
+                        var patrat = [];
+                        var container = [];
+                        for (var j = 0; j < 5; j++) {
+                                container[j] = document.createElement("div");
+                                container[j].setAttribute("id", "c" + j);
+                                container[j].style.position = "relative";
+                                container[j].style.overflow = "auto";
+                                for (var i = 0; i < 6; i++) {
+                                        patrat[6 * j + i] = document.createElement("div");
+                                        patrat[6 * j + i].setAttribute("id", "d" + j + i);
+                                        patrat[6 * j + i].style.position = "relative";
+                                        patrat[6 * j + i].style.display = "inline-block";
+                                        patrat[6 * j + i].style.backgroundColor = "blue";
+                                        patrat[6 * j + i].style.height = "100px";
+                                        patrat[6 * j + i].style.width = "100px";
+                                        patrat[6 * j + i].style.margin = "10px";
+                                        patrat[6 * j + i].style.borderRadius = "10px";
+                                }
+                        }
+                        patrat[0].style.backgroundColor = "red";
+                        for (var j = 0; j < 5; j++)
+                                document.body.appendChild(container[j]);
+                        for (var j = 0; j < 5; j++)
+                                for (var i = 0; i < 6; i++)
+                                        container[j].appendChild(patrat[6 * j + i]);
+                        var pozitie_j = 0, pozitie_i = 0;
+                        alert("W,A,S,D");
+                        document.addEventListener("keypress", function (e) {
+                                e = e || window.event;
+                                if ((e.key == 'w') && pozitie_j != 0) {
+                                        document.getElementById("d" + (pozitie_j - 1) + pozitie_i).style.backgroundColor = "red";
+                                        document.getElementById("d" + pozitie_j + pozitie_i).style.backgroundColor = "blue";
+                                        pozitie_j--;
+                                }
+                                if ((e.key == 'a') && pozitie_i != 0) {
+                                        document.getElementById("d" + pozitie_j + (pozitie_i - 1)).style.backgroundColor = "red";
+                                        document.getElementById("d" + pozitie_j + pozitie_i).style.backgroundColor = "blue";
+                                        pozitie_i--;
+                                }
+                                if ((e.key == 's') && pozitie_j != 4) {
+                                        document.getElementById("d" + (pozitie_j + 1) + pozitie_i).style.backgroundColor = "red";
+                                        document.getElementById("d" + pozitie_j + pozitie_i).style.backgroundColor = "blue";
+                                        pozitie_j++;
+                                }
+                                if ((e.key == 'd') && pozitie_i != 5) {
+                                        document.getElementById("d" + pozitie_j + (pozitie_i + 1)).style.backgroundColor = "red";
+                                        document.getElementById("d" + pozitie_j + pozitie_i).style.backgroundColor = "blue";
+                                        pozitie_i++;
+                                }
+                        });
+                }
+        </script>
+
+</head>
+
+<body onload="functie()"></body>
+
+</html>

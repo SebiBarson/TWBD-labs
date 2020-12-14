@@ -1,0 +1,69 @@
+<!--
+        Dezvoltati  o  pagina  web  cu  facilitati  JavaScript  care  pozitioneaza  la  mijlocul  ecranului  o  componenta  "div"  cu  latura  de  \
+        100  de  pixeli,  umpluta  cu  rosu.  Cand  mouse-ul  se  afla  deasupra  componentei,  aceasta  este  colorata  cu  albastru.
+        Schimbați  culoarea  componentei  progresiv  (setTimeout,  setInterval)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 10 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        var r = 255, b = 0;
+        
+        function functie() {
+            var element = document.createElement("div");
+            element.setAttribute("id", "d0");
+            //element.setAttribute("onmouseover", "blue()");
+            //element.setAttribute("onmouseout", "red()");
+            var x = window.innerHeight / 2;
+            x -= 50;
+            var y = window.innerWidth / 2;
+            y -= 50;
+            element.style.top = x + "px";
+            element.style.left = y + "px";
+            element.style.position = "absolute";
+            element.style.display = "block";
+            element.style.backgroundColor = "red";
+            element.style.height = "100px";
+            element.style.width = "100px";
+            document.body.appendChild(element);
+            element.addEventListener("mouseover",function red(){
+                obiect = document.getElementById("d0");
+                obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
+                if (b > 0)
+                    b--;
+                if (r < 255)
+                    r++
+                obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
+                if (r < 255)
+                    setTimeout("red()", 0.5);
+            });
+            element.addEventListener("mouseout",function blue(){
+                obiect = document.getElementById("d0");
+                obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
+                if (r > 0)
+                    r--;
+                if (b < 255)
+                    b++
+                if (b < 255)
+                    setTimeout("blue()", 0.5);
+            });
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+    <style>
+        body {
+            background-color: rgb(119, 30, 30);
+        }
+    </style>
+</body>
+
+</html>

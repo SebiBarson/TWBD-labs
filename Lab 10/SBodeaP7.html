@@ -1,0 +1,78 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care detecteaza si afiseaza caracteristicile:
+        - host
+        - hostname
+        - href
+        - pathname
+        - port
+        - protocol
+    specifice paginii curente. 
+    Sa se afiseze numele browserului care a servit la incarcarea paginii.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 10 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        var count = 0;
+        function functie() {
+            displayer = document.createElement("h1");
+            displayer.setAttribute("id", "_displayer");
+            displayer.style.color = "white";
+            displayer.style.textAlign = "left";
+            displayer.innerHTML = "host: " + window.location.host + "<br>hostname: " + 
+                window.location.hostname + "<br>href: " + window.location.href + "<br>pathname: " + 
+                window.location.pathname + "<br>port: " + window.location.port + "<br>protocol: " + 
+                window.location.protocol + "<br>browser: " + browser();
+            var x = window.innerHeight / 2;
+            x -= 200;
+            y = 50;
+            displayer.style.top = x + "px";
+            displayer.style.left = y + "px";
+            displayer.style.position = "absolute";
+            document.body.appendChild(displayer);
+        }
+        function browser(){
+            var browsercount=0, browser="";
+            if(navigator.userAgent.includes("Firefox") || navigator.userAgent.includes("Mozilla")){
+                browsercount++;
+                browser="Firefox";
+            }
+            if(navigator.userAgent.includes("Edg") ){
+                browsercount++;
+                browser="MS Edge";
+            }
+            if(navigator.userAgent.includes("Chrome")){
+                browsercount++;
+                browser="Chrome";
+            }
+            if(navigator.userAgent.includes("Safari")){
+                browsercount++;
+                browser="Safari";
+            }
+            if(browsercount==1)
+                return browser;
+            else
+                if(browsercount>1)
+                    return "Some hybrid abomination like Chromium or Brave";
+                else
+                    return "Some unknown minority";
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+</body>
+
+</html>

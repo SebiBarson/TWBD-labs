@@ -1,0 +1,53 @@
+<!--
+        Dezvoltati  o  pagina  web  cu  facilitati  JavaScript  care  pozitioneaza  la  mijlocul  ecranului  o  componenta  "div"  cu  latura  de  \
+        100  de  pixeli,  umpluta  cu  rosu.  Cand  mouse-ul  se  afla  deasupra  componentei,  aceasta  este  colorata  cu  albastru.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 10 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        function functie() {
+            var element = document.createElement("div");
+            element.setAttribute("id", "d0");
+            element.setAttribute("onmouseover", "over()");
+            element.setAttribute("onmouseout", "out()");
+            var x = window.innerHeight / 2;
+            x -= 50;
+            var y = window.innerWidth / 2;
+            y -= 50;
+            element.style.top = x + "px";
+            element.style.left = y + "px";
+            element.style.position = "absolute";
+            element.style.display = "block";
+            element.style.backgroundColor = "red";
+            element.style.height = "100px";
+            element.style.width = "100px";
+            document.body.appendChild(element);
+            element.addEventListener("mouseover",function(){
+                obiect = document.getElementById("d0");
+                obiect.style.backgroundColor = "blue";
+            });
+            element.addEventListener("mouseout",function(){
+                obiect = document.getElementById("d0");
+                obiect.style.backgroundColor = "red";
+            });
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+</body>
+
+</html>

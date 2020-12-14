@@ -1,0 +1,35 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care afiseaza ora curenta (hh:mm:ss), actualizata o 
+        data pe secunda (obiect de tip Date, apel repetat de cod prin setInterval() sau setTimeout()).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 10 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        var count=0;
+        function functie() {
+            displayer=document.createElement("p");
+            displayer.setAttribute("id", "displayer");
+            displayer.style.color="black";
+            document.body.appendChild(displayer);
+            cronometru();
+        }
+        function cronometru(){
+            var date=new Date;
+            document.getElementById("displayer").innerHTML=""+date.getHours()+" : "+date.getMinutes()+" : "+date.getSeconds();
+            count++;
+            setTimeout("cronometru()",1000);
+        }
+    </script>
+
+</head>
+
+<body onload="functie()"></body>
+
+</html>

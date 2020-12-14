@@ -1,0 +1,82 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care defineste o grila dreptunghiulara (componente div
+    alaturate, dispuse matricial; dimensiunea grilei este prestabilita).
+    La trecerea cu mouse-ul peste componente, acestea isi schimba culoarea. Monitorizati si afisati timpul scurs
+    pana la colorarea tuturor celulelor.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 10 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        var numar_elemente_selectate=0;
+        var count=0;
+        function functie() {
+            var div = [];
+            var con = [];
+            displayer=document.createElement("h3");
+            displayer.setAttribute("id", "_displayer");
+            document.body.appendChild(displayer);
+            for (var j = 0; j < 5; j++) {
+                con[j] = document.createElement("div");
+                con[j].setAttribute("id", "c" + j);
+                con[j].style.position = "relative";
+                con[j].style.display = "block";
+                con[j].style.overflow = "auto";
+                for (var i = 0; i < 5; i++) {
+                    div[5 * j + i] = document.createElement("div");
+                    div[5 * j + i].setAttribute("id", "d" + j + i);
+                    div[5 * j + i].style.position = "relative";
+                    div[5 * j + i].style.display = "inline-block";
+                    div[5 * j + i].style.backgroundColor = "black";
+                    div[5 * j + i].style.height = "100px";
+                    div[5 * j + i].style.width = "100px";
+                    div[5 * j + i].style.margin = "10px";
+                }
+            }
+            for (var j = 0; j < 5; j++)
+                document.body.appendChild(con[j]);
+            for (var j = 0; j < 5; j++)
+                for (var i = 0; i < 5; i++)
+                    con[j].appendChild(div[5 * j + i]);
+            var timer_on=false;
+            document.addEventListener("mouseover", function(e){
+                e = e || mouse.event;
+                if(e.target.id.charAt(0)=="d".charAt(0)){//verifica daca componenta e de interes sau nuS
+                    if(timer_on==false){
+                        counter();
+                        timer_on=true;
+                    }
+                    if(e.target.style.backgroundColor=="black")
+                        numar_elemente_selectate++;
+                    e.target.style.backgroundColor="red";
+                    if(numar_elemente_selectate==25){
+                        displayer.innerHTML="Task indeplinit. Timp trecut: " + count/10 + "secunde";
+                    }
+                }
+            });
+        }
+        function counter(){
+            document.getElementById("_displayer").innerHTML="Timp trecut: "+(count/10)+" secunde";
+            count++;
+            if(numar_elemente_selectate<25)
+                setTimeout("counter()",100);
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+</body>
+
+</html>
