@@ -1,0 +1,64 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care afiseaza doua campuri pt. introducerea unei 
+        date. 
+    Se valideaza datele introduse doar dacă delimitează un interval mai mare de 3 luni.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 11</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        function functie() {
+            data1 = document.createElement("input");
+            data2 = document.createElement("input");
+
+            data1.setAttribute("type", "date");
+            data2.setAttribute("type", "date");
+
+            document.body.appendChild(data1);
+            document.body.appendChild(data2);
+
+            data1.valueAsDate = null;
+            data2.valueAsDate = null;
+
+            data1.addEventListener("change", function () {
+                if ((data1.valueAsDate != null && data2.valueAsDate != null))
+                    if (Math.abs(monthDiff(data1.valueAsDate, data2.valueAsDate)) > 3)
+                        alert("Date introduse cu succes. \nData 1: " + data1.value + "\nData 2: " + data2.value);
+                    else {
+                        alert("Datele trebuie sa fie la cel putin 3 luni distanta.");
+                        data1.valueAsDate = null;
+                        data2.valueAsDate = null;
+                    }
+            });
+            data2.addEventListener("change", function () {
+                if ((data1.valueAsDate != null && data2.valueAsDate != null))
+                    if (Math.abs(monthDiff(data1.valueAsDate, data2.valueAsDate)) > 3)
+                        alert("Date introduse cu succes. \nData 1: " + data1.value + "\nData 2: " + data2.value);
+                    else {
+                        alert("Datele trebuie sa fie la cel putin 3 luni distanta.");
+                        data1.valueAsDate = null;
+                        data2.valueAsDate = null;
+                    }
+            });
+        }
+        function monthDiff(d1, d2) {
+            var months;
+            months = (d2.getFullYear() - d1.getFullYear()) * 12;
+            months -= d1.getMonth();
+            months += d2.getMonth();
+            return months <= 0 ? 0 : months;
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+</body>
+
+</html>
