@@ -14,12 +14,32 @@
 
     <script>
         var r = 255, b = 0;
-        
+        function red() {
+            obiect = document.getElementById("d0");
+            obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
+            if (b > 0)
+                b--;
+            if (r < 255)
+                r++
+            obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
+            if (r < 255)
+                setTimeout("red()", 3);
+        }
+        function blue() {
+            obiect = document.getElementById("d0");
+            obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
+            if (r > 0)
+                r--;
+            if (b < 255)
+                b++
+            if (b < 255)
+                setTimeout("blue()", 3);
+        }
         function functie() {
             var element = document.createElement("div");
             element.setAttribute("id", "d0");
-            //element.setAttribute("onmouseover", "blue()");
-            //element.setAttribute("onmouseout", "red()");
+            element.setAttribute("onmouseover", "over()");
+            element.setAttribute("onmouseout", "out()");
             var x = window.innerHeight / 2;
             x -= 50;
             var y = window.innerWidth / 2;
@@ -32,27 +52,12 @@
             element.style.height = "100px";
             element.style.width = "100px";
             document.body.appendChild(element);
-            element.addEventListener("mouseover",function red(){
-                obiect = document.getElementById("d0");
-                obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
-                if (b > 0)
-                    b--;
-                if (r < 255)
-                    r++
-                obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
-                if (r < 255)
-                    setTimeout("red()", 0.5);
-            });
-            element.addEventListener("mouseout",function blue(){
-                obiect = document.getElementById("d0");
-                obiect.style.backgroundColor = "rgb(" + r + ",0," + b + ")";
-                if (r > 0)
-                    r--;
-                if (b < 255)
-                    b++
-                if (b < 255)
-                    setTimeout("blue()", 0.5);
-            });
+        }
+        function over() {
+            setTimeout("blue()", 10);
+        }
+        function out() {
+            setTimeout("red()", 10);
         }
     </script>
 
@@ -61,7 +66,7 @@
 <body onload="functie()">
     <style>
         body {
-            background-color: rgb(119, 30, 30);
+            background-color: dimgrey;
         }
     </style>
 </body>

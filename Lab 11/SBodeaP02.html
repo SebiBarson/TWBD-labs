@@ -1,0 +1,139 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript care permite introducerea unei parole. 
+    Gradul de rezistenta a parolei la atacuri (lungime, caractere majuscule si minuscule, caractere 
+    numerice si speciale) este calculat (1..10) pe masura ce parola este scrisa (evenimente de tastatura)
+    iar utilizatorul este informat in timp real asupra gradului de rezistenta calculat prin afisarea 
+    valorii numerice.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 11</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+
+    <script>
+        function functie() {
+            pass = document.createElement("input");
+            pass.setAttribute("type", "password");
+            pass.setAttribute("id", "parola");
+
+            lcs = document.createElement("h3");
+            lcs.innerHTML = "Caractere lowercase";
+            lcs.style.color = "red";
+            lcs.setAttribute("id", "lcs");
+            lcs.setAttribute("tag", "clasa");
+
+            ucs = document.createElement("h3");
+            ucs.innerHTML = "Caractere uppercase";
+            ucs.style.color = "red";
+            ucs.setAttribute("id", "ucs");
+
+            nr = document.createElement("h3");
+            nr.innerHTML = "Caractere numerice";
+            nr.style.color = "red";
+            nr.setAttribute("id", "nr");
+
+            lng = document.createElement("h3");
+            lng.innerHTML = "Lungime";
+            lng.style.color = "red";
+            lng.setAttribute("id", "lng");
+
+            special = document.createElement("h3");
+            special.innerHTML = "Caractere speciale";
+            special.style.color = "red";
+            special.setAttribute("id", "special");
+
+            pass_strength = document.createElement("h3");
+            pass_strength.innerHTML = "Securitate parola: 0/10";
+            pass_strength.style.color = "red";
+            pass_strength.setAttribute("id", "pass_strength");
+
+            document.body.appendChild(pass_strength);
+            document.body.appendChild(lng);
+            document.body.appendChild(lcs);
+            document.body.appendChild(ucs);
+            document.body.appendChild(nr);
+            document.body.appendChild(special);
+            document.body.appendChild(pass);
+            document.addEventListener("keyup", function (e) {
+                e = e || window.event;
+                var securitate = 0;
+                var lowercase = false, uppercase = false, special = false, numbers = false;
+                var parola = document.getElementById("parola").value + e.key;
+
+                for (var i = 0; i < parola.length; i++) {
+
+                    document.getElementById("ucs").style.color="red";
+                    document.getElementById("lcs").style.color="red";
+                    document.getElementById("nr").style.color="red";
+                    document.getElementById("special").style.color="red";
+
+                    if (parola.charAt(i).match(/[a-z]/i))
+                        if (parola.charAt(i).toLowerCase() == parola.charAt(i)) {
+                            lowercase = true;
+                        }
+                    if (parola.charAt(i).match(/[A-Z]/i)) {
+                        if (parola.charAt(i).toUpperCase() == parola.charAt(i)) {
+                            uppercase = true;
+                        }
+                    } else
+                        if (parola.charAt(i).match(/[0-9]/i)) {
+                            numbers = true;
+                        }
+                        else
+                            if (parola.length > 0)
+                                special = true;
+                }
+                if (parola.length < 8)
+                    document.getElementById("lng").style.color = "red";
+                else
+                    if (parola.length < 12) {
+                        document.getElementById("lng").style.color = "orange";
+                        securitate += 1;
+                        document.getElementById("pass_strength").innerHTML = "Securitate parola: " +
+                            securitate + "/10";
+                    }
+                    else {
+                        document.getElementById("lng").style.color = "green";
+                        securitate += 2;
+                        document.getElementById("pass_strength").innerHTML = "Securitate parola: " +
+                            securitate + "/10";
+                    }
+
+                if (lowercase == true)
+                    document.getElementById("lcs").style.color = "green";
+                if (uppercase == true)
+                    document.getElementById("ucs").style.color = "green";
+                if (numbers == true)
+                    document.getElementById("nr").style.color = "green";
+                if (special == true)
+                    document.getElementById("special").style.color = "green";
+
+                securitate += lowercase * 2 + uppercase * 2 + numbers * 2 + special * 2;
+                if (securitate < 5)
+                    document.getElementById("pass_strength").style.color = "red";
+                else
+                    if (securitate < 7)
+                        document.getElementById("pass_strength").style.color = "orange";
+                    else
+                        document.getElementById("pass_strength").style.color = "green";
+                document.getElementById("pass_strength").innerHTML = "Securitate parola: " +
+                    securitate + "/10";
+            });
+        }
+    </script>
+
+</head>
+
+<body onload="functie()">
+    <style>
+        .clasa {
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</body>
+
+</html>
