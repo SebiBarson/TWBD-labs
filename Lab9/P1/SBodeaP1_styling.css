@@ -1,0 +1,14 @@
+body {
+    font-family: "Helvetica", "Times New Roman";
+    font-size: 20px;
+    font-style: italic;
+    background-color: dimgrey;
+}
+
+div {
+    display: block;
+    padding: 10px;
+    color: darkred;
+    margin: 3px;
+    background-color: darkgrey;
+}
