@@ -64,32 +64,32 @@
 
 <body onload>
     <div style="overflow:auto; border-radius:10px; background-color:aquamarine; position:relative; float:left; padding:20px;">
-        <form action=“https://helios.utcluj.ro/cosmin/WEB/responders/post_responder.php” target="_blank" method=“POST” id="form1">
+        <form action="https://helios.utcluj.ro/cosmin/WEB/responders/post_responder.php" target="_blank" method="POST" id="form1">
             <label for="nume">Nume: </label>
-            <input type="text" id="nume" required></input><br>
+            <input type="text" id="nume" name="nume"required></input><br>
             <label for="prenume">Prenume: </label>
-            <input type="text" id="prenume" required></input><br>
+            <input type="text" id="prenume" name="prenume" required></input><br>
             <label for="sex">Sex: </label>
-            <input type="radio" id="masculin" name="sex" checked="true">Masculin</input>
-            <input type="radio" id="feminin" name="sex">Feminin</input>
-            <input type="radio" id="non-binar" name="sex">Altul</input><br>
+            <input type="radio" id="masculin" name="sex" checked="true" value= "masculin">Masculin</input>
+            <input type="radio" id="feminin" name="sex" value= "feminin">Feminin</input>
+            <input type="radio" id="non-binar" name="sex" value= "non-binar">Altul</input><br>
             <label for="datanastere">Data nasterii: </label>
-            <input type="date" id="datanastere" required><br>
+            <input type="date" id="datanastere" name="Data_nastere" required><br>
             <label for="email">Email: </label>
             <input type="email" placeholder="you@example.com" id="email" required><br>
             <label for="telefon">Tel: </label>
             <input type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required id="telefon"><br>
             <label for="programare">Cunostinte programare: <br></label>
-            <input type="checkbox" id="java" name="programare">Java</input><br>
-            <input type="checkbox" id="javascript" name="programare">JavaScript</input><br>
-            <input type="checkbox" id="c" name="programare">C</input><br>
-            <input type="checkbox" id="cpp" name="programare">C++</input><br>
-            <input type="checkbox" id="matlab" name="programare">Matlab</input><br>
-            <input type="checkbox" id="python" name="programare">Python</input><br>
-            <input type="checkbox" id="ruby" name="programare">Ruby</input><br>
+            <input type="checkbox" id="java" name="programare" value="java">Java</input><br>
+            <input type="checkbox" id="javascript" name="programare" value="javascript">JavaScript</input><br>
+            <input type="checkbox" id="c" name="programare" value="c">C</input><br>
+            <input type="checkbox" id="cpp" name="programare" value="c++">C++</input><br>
+            <input type="checkbox" id="matlab" name="programare" value="matlab">Matlab</input><br>
+            <input type="checkbox" id="python" name="programare" value="python">Python</input><br>
+            <input type="checkbox" id="ruby" name="programare" value="ruby">Ruby</input><br>
             <label for="observatii">Observatii:</label>
             <textarea name="observatii" id="observatii" rows="4" cols="50" required></textarea><br>
-            <input type="button" onclick="functie()" id="btnsubmit" value="Trimite formular">
+            <input type="submit" onclick="functie()" id="btnsubmit" value="Trimite formular">
         </form>
     </div>
 </body>
