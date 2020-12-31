@@ -1,0 +1,69 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript/jQuery care genereaza 10 componente patrate de tip
+    div si le pozitioneaza aleator pe ecran. 
+    Fiecare componenta dispare la click. 
+    Se afiseaza in permanenta numarul de secunde trecute de la incarcarea paginii. 
+    Cronometrul se opreste dupa disparitia ultimului patrat.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 12 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        var count = 0;
+        var numar_elemente_selectate = 0;
+        var cronometru_on = false;
+        $(document).ready(function () {
+            $('body').append('<p id="displayer" >Click pe elemente</p>');
+            for (var i = 0; i < 10; i++) {
+                $('body').append('<div id="d' + i + '" ></div>');
+                $('#d' + i).css('background-color', getRandomColor());
+                $('#d' + i).css('position', 'absolute');
+                $('#d' + i).css('padding', '50px');
+                $('#d' + i).css('top', Math.random() * 500 + "px");
+                $('#d' + i).css('left', "" + Math.random() * 900 + "px");
+            }
+            $("div").click(function () {
+                if (cronometru_on == false) {
+                    cronometru_on = true;
+                    counter();
+                }
+                $(this).hide();
+                numar_elemente_selectate++;                    
+            });
+        });
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        function counter() {
+            $("#displayer").html("Timp trecut: " + (count / 10) + " secunde");
+            count++;
+            if (numar_elemente_selectate < 10)
+                setTimeout("counter()", 100);
+            else
+            $("#displayer").html("Task indeplinit in " + (count / 10) + " secunde");
+        }
+    </script>
+
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<angajati>
+    <angajat>
+        <nume>Popescu Vasile</nume>
+        <data_nasterii>1990-02-22</data_nasterii>
+        <data_angajarii>2005-05-21</data_angajarii>
+        <functie>PR manager</functie>
+        <departament>Administrative</departament>
+    </angajat>
+
+    <angajat>
+        <nume>Ionescu Maria</nume>
+        <data_nasterii>1989-07-19</data_nasterii>
+        <data_angajarii>2003-05-01</data_angajarii>
+        <functie>Co-president</functie>
+        <departament>Executive</departament>
+    </angajat>
+
+    <angajat>
+        <nume>Radu Alin</nume>
+        <data_nasterii>1992-03-13</data_nasterii>
+        <data_angajarii>2008-09-24</data_angajarii>
+        <functie>Janitor</functie>
+        <departament>Design</departament>
+    </angajat>
+
+    <angajat>
+        <nume>Pop Catalina</nume>
+        <data_nasterii>1993-02-01</data_nasterii>
+        <data_angajarii>2005-03-16</data_angajarii>
+        <functie>Director</functie>
+        <departament>Executive</departament>
+    </angajat>
+</angajati>

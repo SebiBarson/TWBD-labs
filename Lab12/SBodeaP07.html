@@ -1,0 +1,74 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript/jQuery care defineste in format xml/JSON tabela 
+    „angajati” prelucrata in modulul de baze de date. 
+    Parsati documentul si afisati angajatii din Cluj cu vechimea mai mare de 1 an.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 12 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            text="<angajati>"+
+                    "<angajat>"+
+                        "<nume>Popescu Vasile</nume>"+
+                        "<data_nasterii>1990-02-22</data_nasterii>"+
+                        "<data_angajarii>2005-05-21</data_angajarii>"+
+                        "<functie>PR manager</functie>"+
+                        "<departament>Administrative</departament>"+
+                    "</angajat>"+
+
+                    "<angajat>"+
+                        "<nume>Ionescu Maria</nume>"+
+                        "<data_nasterii>1989-07-19</data_nasterii>"+
+                        "<data_angajarii>2020-05-01</data_angajarii>"+
+                        "<functie>Co-president</functie>"+
+                        "<departament>Executive</departament>"+
+                    "</angajat>"+
+
+                    "<angajat>"+
+                        "<nume>Radu Alin</nume>"+
+                        "<data_nasterii>1992-03-13</data_nasterii>"+
+                        "<data_angajarii>2008-09-24</data_angajarii>"+
+                        "<functie>Janitor</functie>"+
+                        "<departament>Design</departament>"+
+                    "</angajat>"+
+
+                    "<angajat>"+
+                        "<nume>Pop Catalina</nume>"+
+                        "<data_nasterii>1993-02-01</data_nasterii>"+
+                        "<data_angajarii>2020-03-16</data_angajarii>"+
+                        "<functie>Director</functie>"+
+                        "<departament>Executive</departament>"+
+                    "</angajat>"+
+                "</angajati>";
+
+                parser = new DOMParser();
+                xmlDoc = parser.parseFromString(text,"text/xml");
+                for(var i=0;i<4;i++){
+                    nume=xmlDoc.getElementsByTagName("nume")[i].childNodes[0].nodeValue;
+                    data_angajarii=xmlDoc.getElementsByTagName("data_angajarii")[i].childNodes[0].nodeValue;
+                    if(((new Date()).getTime()-(new Date(data_angajarii)).getTime())/(24*3600*1000)>=365)
+                        $("#div0").append(nume + "; ");
+                }
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="div0"></div>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+</body>
+
+</html>
