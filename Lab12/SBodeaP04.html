@@ -1,0 +1,62 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript/jQuery care afiseaza 10 componente alaturate de tip
+    div.
+
+    Folositi functii de animatie pentru a mari cu 10 pixeli dimensiunile fiecarei componente dupa ce se 
+    detecteaza click-uri de mouse.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 12 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var v = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
+            $("div").click(function () {
+                i = parseInt($(this).attr('id').charAt(1))
+                v[i] = v[i] + 10;
+                var h = v[i] + 'px';
+                var w = v[i] + 'px';
+                $(this).animate({ height: h, width: w }, 'fast');
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+
+        div {
+            position: relative;
+            left: 20px;
+            margin-top: 50px;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-color: aquamarine;
+        }
+    </style>
+    <a>Click pe patrate...<br></a>
+    <div id="d0"></div>
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+    <div id="d4"></div>
+    <div id="d5"></div>
+    <div id="d6"></div>
+    <div id="d7"></div>
+    <div id="d8"></div>
+    <div id="d9"></div>
+</body>
+
+</html>

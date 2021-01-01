@@ -1,0 +1,116 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript/jQuery care afiseaza 2 campuri de tip textarea. 
+    Pe masura ce utilizatorul scrie caractere in primul camp (evenimente de tastatura), in al doilea 
+    camp se afiseaza o statistica referitoare la caracterele introduse.
+    
+    Ex.
+        A - apare de 17 ori in textul de 100 de caractere; procentaj: 17%
+        B - apare de 3 ori in textul de 100 de caractere; procentaj: 3%
+
+    Rescrieti aplicatia astfel incat statistica sa se afiseze la apasarea unui buton.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 12 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($("#modFunctionare").val() == "key") {
+                $("#btn").hide();
+                $("#text").keypress(function (e) {
+                    e = e || window.event;
+                    txt = $("#text").val() + e.key;
+                    $("#output").text('');
+                    for (var i = 0; i < txt.length; i++) {
+                        var charCount = 1;
+                        for (j = i + 1; j < txt.length; j++)
+                            if (txt.charAt(i) == txt.charAt(j)) {
+                                charCount++;
+                                txt = txt.slice(0, j) + txt.slice(j + 1, txt.length);
+                                j--;
+                            }
+                        $("#output").append("Caracterul '" + txt.charAt(i) + "' apare de " + charCount +
+                            " ori in sirul de " + ($("#text").val().length + 1) + " caractere. Procentaj: " +
+                            (charCount / ($("#text").val().length + 1) * 100).toFixed(2) + '%\n');
+                    }
+                });
+            }
+            else {
+                $("#btn").show();
+                $("#btn").click(function () {
+                    txt = $("#text").val();
+                    $("#output").text('');
+                    for (var i = 0; i < txt.length; i++) {
+                        var charCount = 1;
+                        for (j = i + 1; j < txt.length; j++)
+                            if (txt.charAt(i) == txt.charAt(j)) {
+                                charCount++;
+                                txt = txt.slice(0, j) + txt.slice(j + 1, txt.length);
+                                j--;
+                            }
+                        $("#output").append("Caracterul '" + txt.charAt(i) + "' apare de " + charCount +
+                            " ori in sirul de " + ($("#text").val().length + 1) + " caractere. Procentaj: " +
+                            (charCount / ($("#text").val().length + 1) * 100).toFixed(2) + '%\n');
+                    }
+                });
+            }
+            $("#modFunctionare").change(function () {
+                $("#text").blur();
+                $("#output").text('');
+                $("#text").text('');
+                if ($("#modFunctionare").val() == "key") {
+                    $("#btn").hide();
+                    $("#text").keypress(function (e) {
+                        e = e || window.event;
+                        txt = $("#text").val() + e.key;
+                        $("#output").text('');
+                        for (var i = 0; i < txt.length; i++) {
+                            var charCount = 1;
+                            for (j = i + 1; j < txt.length; j++)
+                                if (txt.charAt(i) == txt.charAt(j)) {
+                                    charCount++;
+                                    txt = txt.slice(0, j) + txt.slice(j + 1, txt.length);
+                                    j--;
+                                }
+                            $("#output").append("Caracterul '" + txt.charAt(i) + "' apare de " + charCount +
+                                " ori in sirul de " + ($("#text").val().length + 1) + " caractere. Procentaj: " +
+                                (charCount / ($("#text").val().length + 1) * 100).toFixed(2) + '%\n');
+                        }
+                    });
+                }
+                else {a
+                    $("#btn").show();
+                    $('body').off("keypress", "#output");
+                }
+            });
+        });
+
+
+    </script>
+
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+    <a>Rezultatul o sa se vada: </a>
+    <select id="modFunctionare">
+        <option value="button">La apasare de buton</option>
+        <option value="key">In timp ce scrii</option>
+    </select>
+    <input type="button" id="btn" value="Afiseaza statistica">
+    <br>
+    <textarea id="text" , rows="10" , cols="100"></textarea>
+    <textarea id="output" , rows="26" , cols="100"></textarea>
+</body>
+
+</html>

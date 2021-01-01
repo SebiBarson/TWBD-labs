@@ -1,0 +1,49 @@
+<!--
+    Dezvoltati o pagina web cu facilitati jQuery care afiseaza doua campuri pt. introducerea unei date. 
+    La apasarea unui buton se valideaza datele introduse doar daca delimiteaza un interval mai mare de 3 
+    luni (analog pb. 3 din lab. 11).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 12 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                if ($('#1').val() != '' && $('#2').val() != '') {
+                    if (Math.abs(Date.parse($("#1").val()) - Date.parse($("#2").val()))
+                        / (24 * 3600 * 1000) >= 90)
+                        alert("Date valide");
+                    else {
+                        alert("Date invalide!");
+                        $('#1').val(null);
+                        $('#2').val(null);
+                    }
+                }
+                else
+                    alert("Introduceti datele!");
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+
+    <input type="date" id="1">
+    <input type="date" id="2"><br>
+    <button>Valideaza date</button>
+</body>
+
+</html>
