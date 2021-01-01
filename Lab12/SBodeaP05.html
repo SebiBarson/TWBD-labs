@@ -1,0 +1,69 @@
+<!--
+    Dezvoltati o pagina web cu facilitati JavaScript/jQuery care implementeaza un formular electronic 
+    cu urmatoarele campuri (analog lab. 11):
+        a. nume (camp de tip text)
+        b. prenume (camp de tip text)
+        c. sex (camp de selectie unica (butoane radio sau camp de tip select))
+        d. data nasterii (camp de tip data)
+        e. adresa de email (camp de tip text)
+
+    Fiecare camp este animat cand primeste focus-ul si isi schimba: 
+        marginea din stanga, inaltimea si latimea.
+
+    Campurile revin la dimensiunile normale la pierderea focus-ului (blur).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 12 twbd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("form").each(function () {
+                $(this).find(':input').focus(function(){
+                    $(this).animate({ marginLeft : '+=300px' , height : '100px' , width : '300px'},
+                        'fast');
+                });
+                $(this).find(':input').blur(function(){
+                    $(this).animate({ marginLeft : '0' , height : '15px' , width : '150px'},
+                        'fast');
+                    if($(this).attr('type')=='radio')
+                        $(this).animate({ width : '20px', height : '13px'} , 'fast');
+                });
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+    <div
+        style="overflow:auto; border-radius:10px; background-color:aquamarine; position:relative; float:left; padding:20px;">
+        <form id="form1">
+            <label for="nume">Nume: </label>
+            <input type="text" id="nume" name="nume" required></input><br>
+            <label for="prenume">Prenume: </label>
+            <input type="text" id="prenume" name="prenume" required></input><br>
+            <label for="sex">Sex: </label>
+            <input type="radio" id="masculin" name="sex" checked="true" value="masculin">Masculin</input>
+            <input type="radio" id="feminin" name="sex" value="feminin">Feminin</input>
+            <input type="radio" id="non-binar" name="sex" value="non-binar">Altul</input><br>
+            <label for="datanastere">Data nasterii: </label>
+            <input type="date" id="datanastere" name="Data_nastere" required><br>
+            <label for="email">Email: </label>
+            <input type="email" placeholder="you@example.com" id="email" required><br>
+        </form>
+    </div>
+</body>
+
+</html>
